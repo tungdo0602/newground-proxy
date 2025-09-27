@@ -17,8 +17,8 @@ app.get("/*", async (request, reply) => {
       "content-type": "media/mpeg",
       "content-length": size,
     });
-    if (size <= 20000000){
-      reply.header("Cache-Control", "public, max-age=31536000");
+    if (size <= 20000000){ // 20 mb max
+      reply.header("Cache-Control", "public, max-age=31536000, immutable"); // 1 year max xd
     }
     reply.status(res.status);
     return res.body;
