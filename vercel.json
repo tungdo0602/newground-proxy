@@ -1,11 +1,11 @@
 {
-    "git": {
-      "deploymentEnabled": false
-    },
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "main.js"
-      }
-    ]
-  }
+  "git": {
+    "deploymentEnabled": false
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "main.js"
+    }
+  ]
+}
