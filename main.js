@@ -12,10 +12,14 @@ app.get("/*", async (request, reply) => {
             "user-agent": "ng-proxy/v1.0.0"
         }
     });
+    let size = res.headers.get("content-length") || "0";
     reply.headers({
       "content-type": "media/mpeg",
-      "content-length": res.headers.get("content-length") || "0",
+      "content-length": size,
     });
+    if (size <= 20000000){
+      reply.header("Cache-Control", "public, max-age=31536000");
+    }
     reply.status(res.status);
     return res.body;
 });
