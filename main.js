@@ -1,5 +1,5 @@
 const app = require('fastify')({ logger: true });
-const APP_PORT = 80;
+
 app.get("/", async (_, reply) => {
   reply.send("Proxy is online!");
 });
@@ -20,7 +20,7 @@ app.get("/*", async (request, reply) => {
     return res.body;
 });
 
-app.listen({ port: APP_PORT }, (err) => {
-  console.log(`Server listening on port ${APP_PORT}`);
-  if(err) console.error(err);
-})
+module.exports = async function handler(req, res) {
+  await app.ready();
+  app.server.emit("request", req, res);
+};
