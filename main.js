@@ -21,10 +21,11 @@ app.get("/*", async (request, reply) => {
       reply.header("Cache-Control", "public, max-age=31536000, immutable"); // 1 year max xd
     }
     reply.status(res.status);
-    return res.body;
+    reply.send(res.body);
 });
 
 module.exports = async function handler(req, res) {
   await app.ready();
   app.server.emit("request", req, res);
+
 };
